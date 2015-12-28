@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<!-- chamada do angular no html utilizando model produto -->
+<html lang="en" ng-app="fornecedorModule">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+<title>Sistema de Cadastro de Fornecedor</title>
+
+<!-- Bootstrap -->
+<link rel="stylesheet" href="lib/dependencies/css/bootstrap.min.css" />
+
+<!-- Angular -->
+<script src="lib/dependencies/js/angular.min.js"></script>
+<script src="control/fornecedor.js"></script>
+
+
+</head>
+<!-- angular controler-->
+<body ng-controller="fornecedorControl">
+
+	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+	<script src="lib/dependencies/js/jquery-2.1.4.js"></script>
+	<!-- Include all compiled plugins (below), or include individual files as needed -->
+	<script src="lib/dependencies/js/bootstrap.min.js"></script>
+
+	<div ng-include src="'menu.html'"></div>
+
+	<div>
+		<!-- Nav tabs -->
+		<ul class="nav nav-tabs" role="tablist">
+			<li role="presentation" class="active"><a href="#home"
+				aria-controls="home" role="tab" data-toggle="tab">Cadastro</a></li>
+			<li role="presentation"><a href="#profile"
+				aria-controls="profile" role="tab" data-toggle="tab">Dados</a></li>
+		</ul>
+
+		<!-- Tab panes -->
+		<div class="tab-content">
+			<div role="tabpanel" class="tab-pane active" id="home">
+
+				<form class="form-horizontal">
+					<div class="form-group">
+						<label for="exampleInputEmail1" class="col-sm-1 control-label">Código</label>
+						<div class="col-sm-5">
+							<!-- objeto fornecedor com atributo código-->
+							<input type="code" class="form-control"
+								ng-model="fornecedor.codigo" disabled="true"
+								placeholder="Código">
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="exampleInputPassword1" class="col-sm-1 control-label">Nome</label>
+						<div class="col-sm-5">
+							<input type="text" class="form-control"
+								ng-model="fornecedor.nome" placeholder="Nome">
+						</div>
+					</div>
+					<button type="button" class="btn btn-info" ng-click="novo();">Novo</button>
+					<button type="submit" class="btn btn-default" ng-click="salvar();">Salvar</button>
+				</form>
+			</div>
+			<div role="tabpanel" class="tab-pane" id="profile">
+
+				<table class="table table-hover">
+					<th>Código</th>
+					<th>Nome</th>
+					<th>Ação</th>
+					<tr ng-repeat="fornecedorTabela in fornecedores"
+						ng-click="selecionaFornecedor(fornecedorTabela);">
+						<td>{{fornecedorTabela.codigo}}</td>
+						<td>{{fornecedorTabela.nome}}</td>
+						<td><button type="button" class="btn btn-danger"
+								ng-click="excluir();">Excluir</button></td>
+					</tr>
+				</table>
+			</div>
+		</div>
+	</div>
+
+</body>
+</html>
