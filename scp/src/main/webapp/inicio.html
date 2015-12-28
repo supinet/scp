@@ -16,7 +16,7 @@
 					<h3>{{product.name}}</h3>
 					<p class="text-left">{{product.description}}</p>
 					<em class="pull-right">{{product.price | currency}}</em> <img
-						ng-src="{{product.images[0].full}}" />
+						ng-src="resources/img/{{product.images[0].thumb}}" />
 					<button type="button" class="btn btn-info"
 						ng-show="product.canPurchase">Add to Cart</button>
 				</div>
