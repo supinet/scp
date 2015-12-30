@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html ng-app="store">
+<html ng-app="gemStore">
 <head>
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,24 +7,43 @@
 <!-- Bootstrap -->
 <link rel="stylesheet" type="text/css"
 	href="lib/dependencies/css/bootstrap.min.css" />
+<link rel="stylesheet" type="text/css"
+	href="resources/css/application.css" />
+<!-- angular -->
+<script type="text/javascript" src="lib/dependencies/js/angular.min.js"></script>
+<script type="text/javascript" src="module/app.js"></script>
+<script type="text/javascript" src="control/product.js"></script>
+
 </head>
 <body>
-	<div ng-controller="StoreController as store">
-		<ul class="list-group">
-			<li class="list-group-item" ng-repeat="product in store.products">
-				<div ng-hide="product.soldOut">
-					<h3>{{product.name}}</h3>
-					<p class="text-left">{{product.description}}</p>
-					<em class="pull-right">{{product.price | currency}}</em> <img
-						ng-src="resources/img/{{product.images[0].thumb}}" />
+	<div class="col-sm-6 col-sm-offset-3 col-xs-10 col-xs-offset-1">
+		<header>
+			<h1 class="text-center">Flatander Grafted Gems</h1>
+			<h2 class="text-center">an angular store</h2>
+		</header>
+		<!-- Products Container -->
+		<div ng-controller="StoreController as store">
+			<ul class="list-group">
+
+				<!-- Product Container -->
+				<li class="list-group-item" ng-repeat="product in store.products">
+					<div ng-hide="product.soldOut">
+						<h3>
+							{{product.name}} <em class="pull-right">{{product.price |
+								currency}}</em>
+						</h3>
+
+						<!-- Image Gallery -->
+						<product-gallery></product-gallery>
+
+						<!-- Product Tabs  -->
+						<product-tabs></product-tabs>
+					</div>
 					<button type="button" class="btn btn-info"
 						ng-show="product.canPurchase">Add to Cart</button>
-				</div>
-			</li>
-		</ul>
+				</li>
+			</ul>
+		</div>
 	</div>
-	<!-- angular -->
-	<script type="text/javascript" src="lib/dependencies/js/angular.min.js"></script>
-	<script type="text/javascript" src="module/app.js"></script>
 </body>
 </html>
